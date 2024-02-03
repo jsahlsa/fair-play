@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <main>
+      <h1>Fair Play App</h1>
+      <div class="roster-container">
+        <h2>Roster</h2>
+        <label for="add-player">
+          <input
+            id="add-player"
+            type="text"
+            placeholder="player"
+            autocomplete="false"
+          />
+          <button class="add-to-roster">Add Player</button>
+          <div>
+            <button class="make-lineup">Create Lineup</button>
+            <button class="clear-data">New Game</button>
+          </div>
+        </label>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th># played</th>
+            </tr>
+          </thead>
+          <tbody class="roster-list"></tbody>
+        </table>
+      </div>
+      <div class="lineup-container"></div>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
