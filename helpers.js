@@ -27,6 +27,8 @@ export function saveRoster(roster) {
 // save lineup
 export function saveLineup(lineup) {
   const oldLineups = getLineup();
+  console.log('old: ', oldLineups, lineup);
+
   let lineupNumber = 0;
   if (oldLineups.length > 0) {
     lineupNumber = oldLineups[0].number + 1;

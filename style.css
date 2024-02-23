@@ -11,25 +11,89 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  box-sizing: border-box;
 }
 
 body {
+  margin: 0;
+}
+
+main {
+  width: 100vw;
+  display: grid;
+  justify-content: stretch;
+  align-content: space-between;
+  grid-template-rows: auto 80vh auto;
+  height: 100vh;
+}
+
+.main-container {
   display: grid;
   place-content: center;
 }
 
+.roster-container,
+.lineup-container {
+  grid-area: 1 / 1;
+}
+
+.lineup-container {
+  display: none;
+  overflow: scroll;
+  width: 100vw;
+  font-size: 1.5rem;
+}
+
+details {
+  padding: 0.3rem;
+  border: solid 1px yellowgreen;
+}
+details:first-child > summary {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+details:first-child > summary::after {
+  content: '(latest)';
+  margin-left: 1rem;
+  color: yellowgreen;
+}
+
+ol {
+  list-style-position: inside;
+}
+
+li {
+  margin: 0 70px 0 30px;
+  font-size: 1.8rem;
+}
+
+li:nth-child(odd) {
+  background-color: #484848;
+}
+
 .roster-container {
-  border: 4px solid greenyellow;
-  border-radius: 2rem;
   padding: 2rem;
+  width: 80vw;
 }
 
 .make-lineup {
   visibility: hidden;
+  border-radius: 0;
+  background-color: yellowgreen;
+  color: #242424;
+}
+
+.clear-data {
+  border-radius: 0;
+  background-color: #242424;
+  border-width: 2px;
 }
 
 h2 {
   margin: 0;
+  font-size: 3rem;
   text-transform: uppercase;
   text-decoration: underline greenyellow 5px;
 }
@@ -42,10 +106,52 @@ button {
   border: 1px solid greenyellow;
   border-radius: 1rem;
   outline: none;
+  font-size: 1.5rem;
 }
 
 button:active {
-  background-color: red;
+  background-color: #484848;
+}
+button:hover {
+  opacity: 0.8;
+}
+
+button:focus {
+  outline: 3px dashed dodgerblue;
+}
+
+input {
+  width: 70%;
+  height: 2.5rem;
+  font-size: 1.5rem;
+  padding: 0.7rem;
+}
+
+input:focus {
+  outline: 3px dashed dodgerblue;
+}
+
+.top-button {
+  border: none;
+  background-color: #242424;
+  color: greenyellow;
+}
+
+.lineup-btn {
+  background-color: greenyellow;
+  color: #242424;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-size: 1.8rem;
+}
+
+td {
+  font-size: 1.5rem;
 }
 
 th,
@@ -56,4 +162,22 @@ td {
 
 tbody tr:nth-child(odd) {
   background-color: #484848;
+}
+
+.roster-lineup-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+}
+.roster-lineup-container > button {
+  width: 100%;
+  border-radius: 0;
+  height: 10vh;
+  margin: 0;
+}
+
+.bottom-container {
+  height: 10vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }

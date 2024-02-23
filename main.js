@@ -26,6 +26,9 @@ const player = document.querySelector('#add-player');
 const makeLineupBtn = document.querySelector('.make-lineup');
 const clearDataBtn = document.querySelector('.clear-data');
 const lineupContainer = document.querySelector('.lineup-container');
+const rosterContainer = document.querySelector('.roster-container');
+const rosterBtn = document.querySelector('.roster-btn');
+const lineupBtn = document.querySelector('.lineup-btn');
 
 /**
  * Adds player to roster
@@ -85,17 +88,14 @@ function makeLineup() {
   if (roster.length <= count) {
     lineup = roster.map((player) => player.name);
     resetLineup(roster, lineup);
-    console.log('little', roster, lineup);
     firstLineup = false;
     // if this is the first lineup < roster length
   } else if (firstLineup) {
     lineup = getRandomLineup(roster, count);
     resetLineup(roster, lineup);
-    console.log('first', roster, lineup);
     firstLineup = false;
     // if 2nd or more lineup with roster length > starter length
   } else {
-    console.log('2nd or more');
     lineup = setLineup(roster, count);
     resetLineup(roster, lineup);
   }
@@ -114,6 +114,28 @@ function clearData() {
   location.reload();
 }
 
+function rosterBtnClick() {
+  rosterContainer.style.visibility = 'visible';
+  lineupContainer.style.display = 'none';
+  rosterBtn.style.backgroundColor = '#242424';
+  lineupBtn.style.backgroundColor = 'greenyellow';
+  lineupBtn.style.color = '#242424';
+  rosterBtn.style.color = 'greenyellow';
+}
+
+function lineupBtnClick() {
+  rosterContainer.style.visibility = 'hidden';
+  lineupContainer.style.display = 'block';
+  lineupBtn.style.backgroundColor = '#242424';
+  lineupBtn.style.color = 'greenyellow';
+  rosterBtn.style.backgroundColor = 'greenyellow';
+  rosterBtn.style.color = '#242424';
+  const lineup = getLineup();
+  paintLineup(lineup, lineupContainer);
+}
+
 addToRoster.addEventListener('click', rosterAdd);
 makeLineupBtn.addEventListener('click', makeLineup);
 clearDataBtn.addEventListener('click', clearData);
+rosterBtn.addEventListener('click', rosterBtnClick);
+lineupBtn.addEventListener('click', lineupBtnClick);
