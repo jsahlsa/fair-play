@@ -107,6 +107,7 @@ function makeLineup() {
   saveRoster(roster);
   roster = getRoster();
   paintRoster(roster, rosterList);
+  lineupBtnClick();
 }
 
 function clearData() {

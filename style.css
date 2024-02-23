@@ -17,6 +17,9 @@
 
 body {
   margin: 0;
+  display: grid;
+  align-items: center;
+  height: 100vh;
 }
 
 main {
@@ -24,8 +27,8 @@ main {
   display: grid;
   justify-content: stretch;
   align-content: space-between;
-  grid-template-rows: auto 80vh auto;
-  height: 100vh;
+  grid-template-rows: auto 70vh auto;
+  height: 90vh;
 }
 
 .main-container {
@@ -121,7 +124,7 @@ button:focus {
 }
 
 input {
-  width: 70%;
+  width: 65%;
   height: 2.5rem;
   font-size: 1.5rem;
   padding: 0.7rem;
@@ -140,6 +143,12 @@ input:focus {
 .lineup-btn {
   background-color: greenyellow;
   color: #242424;
+}
+
+.add-to-roster {
+  height: 4rem;
+  width: 4rem;
+  font-size: 2rem;
 }
 
 table {
