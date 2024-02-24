@@ -33,7 +33,7 @@ main {
   display: grid;
   justify-content: stretch;
   align-content: space-between;
-  grid-template-rows: auto 80vh auto;
+  grid-template-rows: auto 80svh auto;
   min-height: -webkit-fill-available;
 }
 
