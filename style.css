@@ -19,7 +19,13 @@ body {
   margin: 0;
   display: grid;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
+  /* mobile bug* fix */
+  min-height: -webkit-fill-available;
+}
+
+html {
+  height: -webkit-fill-available;
 }
 
 main {
@@ -27,8 +33,8 @@ main {
   display: grid;
   justify-content: stretch;
   align-content: space-between;
-  grid-template-rows: auto 70vh auto;
-  height: 90vh;
+  grid-template-rows: auto 1fr auto;
+  min-height: -webkit-fill-available;
 }
 
 .main-container {
