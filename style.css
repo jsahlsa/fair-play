@@ -33,7 +33,7 @@ main {
   display: grid;
   justify-content: stretch;
   align-content: space-between;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto 80vh auto;
   min-height: -webkit-fill-available;
 }
 
@@ -45,6 +45,10 @@ main {
 .roster-container,
 .lineup-container {
   grid-area: 1 / 1;
+}
+
+.roster-container {
+  overflow: scroll;
 }
 
 .lineup-container {
