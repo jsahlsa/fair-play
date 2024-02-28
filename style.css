@@ -52,7 +52,7 @@ main {
 .lineup-container {
   display: none;
   overflow: scroll;
-  width: 100vw;
+  width: 100dvw;
   font-size: 1.5rem;
 }
 
@@ -77,7 +77,7 @@ ol {
 
 li {
   margin: 0 70px 0 30px;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 
 li:nth-child(odd) {
@@ -104,7 +104,7 @@ li:nth-child(odd) {
 
 h2 {
   margin: 0;
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-transform: uppercase;
   text-decoration: underline greenyellow 5px;
 }
@@ -164,11 +164,11 @@ table {
 }
 
 th {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 
 td {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 th,
@@ -189,12 +189,12 @@ tbody tr:nth-child(odd) {
 .roster-lineup-container > button {
   width: 100%;
   border-radius: 0;
-  height: 10vh;
+  height: 10dvh;
   margin: 0;
 }
 
 .bottom-container {
-  height: 10vh;
+  height: 10dvh;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
