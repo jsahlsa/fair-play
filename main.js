@@ -47,15 +47,14 @@ window.onload = (e) => {
   player.focus();
   const roster = getRoster();
   const lineup = getLineup();
-  console.log(roster);
   if (roster.length > 0) {
     paintRoster(roster, rosterList);
     makeLineupBtn.style.visibility = 'visible';
   }
   if (lineup.length > 0) {
-    console.log(lineup);
+    // do something if there are lineups
   } else {
-    console.log(lineup);
+    // do something if no lineups
   }
 };
 
@@ -69,7 +68,10 @@ function rosterAdd(e) {
     alert('Enter a value');
     return;
   }
-  roster.push({ name: name, lastPlayed: false, timesPlayed: 0 });
+  // push person to roster with data attributes that contain
+  // name, whether they played last, how many times they played
+  // and whether they are active
+  roster.push({ name: name, lastPlayed: false, timesPlayed: 0, active: true });
   // reset input
   player.value = '';
   if (roster.length > 0) {
@@ -84,19 +86,26 @@ function makeLineup() {
   // get roster from local storage
   let roster = getRoster();
   let lineup = [];
+  // find number of active players
+  const activePlayers = roster.filter((player) => player.active).length;
+  console.log('active players: ', activePlayers);
   // if roster length is less than starting lineup length
   if (roster.length <= count) {
-    lineup = roster.map((player) => player.name);
+    // get all players names
+    // do not include if they are not active
+    lineup = roster
+      .filter((player) => player.active)
+      .map((player) => player.name);
     resetLineup(roster, lineup);
     firstLineup = false;
     // if this is the first lineup < roster length
   } else if (firstLineup) {
-    lineup = getRandomLineup(roster, count);
+    lineup = getRandomLineup(roster, count, activePlayers);
     resetLineup(roster, lineup);
     firstLineup = false;
     // if 2nd or more lineup with roster length > starter length
   } else {
-    lineup = setLineup(roster, count);
+    lineup = setLineup(roster, count, activePlayers);
     resetLineup(roster, lineup);
   }
   // paint lineup to DON

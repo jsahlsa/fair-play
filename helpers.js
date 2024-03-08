@@ -44,13 +44,65 @@ export function paintRoster(data, parent) {
     const tr = document.createElement('tr');
     const name = document.createElement('td');
     const timesPlayed = document.createElement('td');
+    // create column to keep track of active/inactive players
+    const active = document.createElement('td');
+    const activeBtn = document.createElement('input');
+    // assign data attribute to each active button
+    activeBtn.setAttribute('data-name', data[i].name);
+    // assign active class to button
+    activeBtn.setAttribute('class', 'active');
+    activeBtn.type = 'checkbox';
+    // append active button to td
+    active.appendChild(activeBtn);
     name.textContent = data[i].name;
     timesPlayed.textContent = data[i].timesPlayed;
+    // make button checked if they are not active
+    if (data[i].active === false) {
+      activeBtn.setAttribute('checked', true);
+    } else {
+      activeBtn.removeAttribute('checked');
+    }
     tr.setAttribute('class', `roster-item ${i}`);
     tr.appendChild(name);
     tr.appendChild(timesPlayed);
+    // append active column
+    tr.appendChild(active);
     parent.appendChild(tr);
+    // use checkbox as parameter for inOut function
+    inOut(activeBtn);
   }
+}
+
+// inOut function defines behavior for active checkboxes
+// if checked player is out, if unchecked player is in
+function inOut(btn) {
+  function activeChanged() {
+    // if player is acive
+    // mark them as out in roster object
+    const roster = getRoster();
+    // get name of person being checked
+    const name = this.getAttribute('data-name');
+    if (this.checked) {
+      // find name in roster
+      for (let i = 0; i < roster.length; i++) {
+        if (roster[i].name === name) {
+          roster[i].active = false;
+          console.log(roster);
+        }
+      }
+      // if player is inactive
+    } else {
+      for (let i = 0; i < roster.length; i++) {
+        if (roster[i].name === name) {
+          roster[i].active = true;
+          console.log(roster);
+        }
+      }
+      console.log('unchecked');
+    }
+    saveRoster(roster);
+  }
+  btn.addEventListener('change', activeChanged);
 }
 
 // paint lineup to the DOM
@@ -76,17 +128,21 @@ export function paintLineup(data, parent) {
   }
 }
 
-export function getRandomLineup(roster, count) {
+export function getRandomLineup(roster, count, activePlayers) {
   const lineup = getLineup();
   const length = roster.length;
   const numbersPlayed = [];
-  while (lineup.length < count) {
+  // add players to the lineup while it is below the count
+  // or below the number of active players
+  while (lineup.length < count && lineup.length < activePlayers) {
     const random = Math.floor(Math.random() * length);
     if (numbersPlayed.includes(random)) {
       continue;
     } else {
-      lineup.push(roster[random].name);
-      numbersPlayed.push(random);
+      if (roster[random].active) {
+        lineup.push(roster[random].name);
+        numbersPlayed.push(random);
+      }
     }
   }
   return lineup;
@@ -100,6 +156,7 @@ export function setPlaying(player) {
     name: player.name,
     lastPlayed: true,
     timesPlayed: (getTimesPlayed += 1),
+    active: player.active,
   };
   return player;
 }
@@ -114,17 +171,19 @@ export function resetLineup(roster, lineup) {
         name: roster[i].name,
         lastPlayed: false,
         timesPlayed: roster[i].timesPlayed,
+        active: roster[i].active,
       };
     }
   }
   return roster;
 }
 
-export function setLineup(roster, count) {
+export function setLineup(roster, count, activePlayers) {
   let lineup = [];
   // add everyone who didn't play last time
+  // unless they are not active
   for (let i = 0; i < roster.length; i++) {
-    if (!roster[i].lastPlayed) {
+    if (!roster[i].lastPlayed && roster[i].active === true) {
       lineup.push(roster[i].name);
     }
   }
@@ -134,12 +193,13 @@ export function setLineup(roster, count) {
   });
   let i = 0;
   // add those who have played the least first
-  while (lineup.length < count) {
-    if (!lineup.includes(rosterSorted[i].name)) {
+  // do not include if they are not active
+  while (lineup.length < count && lineup.length < activePlayers) {
+    if (!lineup.includes(rosterSorted[i].name) && rosterSorted[i].active) {
       lineup.push(rosterSorted[i].name);
     }
     i++;
   }
-  console.log(roster, lineup);
+  // console.log(roster, lineup);
   return lineup;
 }
