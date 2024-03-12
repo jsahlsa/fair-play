@@ -85,7 +85,7 @@ function rosterAdd(e) {
 function makeLineup() {
   // get roster from local storage
   let roster = getRoster();
-  let lineup = [];
+  let lineup = getLineup();
   // find number of active players
   const activePlayers = roster.filter((player) => player.active).length;
   console.log('active players: ', activePlayers);

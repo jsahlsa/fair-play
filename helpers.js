@@ -27,7 +27,6 @@ export function saveRoster(roster) {
 // save lineup
 export function saveLineup(lineup) {
   const oldLineups = getLineup();
-  console.log('old: ', oldLineups, lineup);
 
   let lineupNumber = 0;
   if (oldLineups.length > 0) {
@@ -80,14 +79,21 @@ function inOut(btn) {
     // if player is acive
     // mark them as out in roster object
     const roster = getRoster();
+    // get current lineup
+    const lineup = getLineup();
     // get name of person being checked
     const name = this.getAttribute('data-name');
+
+    // marking them as inactive:
     if (this.checked) {
+      // showDialog function to check whether game is in progress or we are between periods
+      // return value should be yes or no
+      const playing = showDialog(name);
+      console.log(playing);
       // find name in roster
       for (let i = 0; i < roster.length; i++) {
         if (roster[i].name === name) {
           roster[i].active = false;
-          console.log(roster);
         }
       }
       // if player is inactive
@@ -103,6 +109,106 @@ function inOut(btn) {
     saveRoster(roster);
   }
   btn.addEventListener('change', activeChanged);
+}
+
+// showDialog function returns yes or no
+function showDialog(playerName) {
+  let dialogHTML = `
+  <form method="dialog">
+    <p>Currently Playing?</p>
+    <button class="yes">Yes</button>
+    <button class="no">No</button>
+  </form>
+  `;
+  const dialog = document.createElement('dialog');
+  dialog.innerHTML = dialogHTML;
+  const body = document.querySelector('body');
+  body.appendChild(dialog);
+  // selector for modal buttons
+  const dialogButtons = dialog.querySelectorAll('button');
+
+  // function that runs when dialog button is pressed
+  function handleButton(e) {
+    // get class name of button pressed
+    const name = e.target.getAttribute('class');
+    // get roster for both functions
+    const roster = getRoster();
+    // if yes we need to decrement by .5 times played
+    // for player coming off, and increment by .5
+    // times played for player coming on
+    // player coming on should be lowest on times played
+    // if more than one, then choose at random
+    if (name === 'yes') {
+      // sort roster by times played lowest to highest
+      roster.sort((a, b) => a.timesPlayed - b.timesPlayed);
+      // get lowest amount of times played
+      const eligiblePlayers = [];
+      // find all players in the roster who have played this amount of times
+      for (let i = 0; i < roster.length; i++) {
+        if (roster[i].active && !roster[i].lastPlayed) {
+          eligiblePlayers.push(roster[i].name);
+        }
+      }
+      console.log('eligible: ', eligiblePlayers);
+      // initialize player to come on
+      let playerToComeOn;
+      const lineup = getLineup();
+      const currentLineup = lineup[0].lineup;
+      let playerIndex;
+      // if player is in the lineup get their index
+      if (currentLineup.includes(playerName)) {
+        playerIndex = currentLineup.indexOf(playerName);
+      }
+      if (eligiblePlayers.length === 1) {
+        playerToComeOn = eligiblePlayers[0];
+      } else if (eligiblePlayers.length === 0) {
+        currentLineup.splice(playerIndex, 1);
+        // check if person made inactive is in the lineup
+      } else {
+        playerToComeOn = getOneAtRandom(eligiblePlayers);
+      }
+      // remove player made inactive and add new player
+      // only if there are is a player to come on
+      if (playerToComeOn) {
+        currentLineup.splice(playerIndex, 1, playerToComeOn);
+      }
+      lineup[0].lineup = currentLineup;
+      // increment times played by .5 for player coming on
+      // change status to last played to true
+      for (let i = 0; i < roster.length; i++) {
+        if (roster[i].name === playerToComeOn) {
+          roster[i].lastPlayed = true;
+          roster[i].timesPlayed += 0.5;
+        }
+        // do the opposite for the player coming off
+        if (roster[i].name === playerName) {
+          roster[i].timesPlayed -= 0.5;
+          roster[i].lastPlayed = false;
+        }
+      }
+      const lineupContainer = document.querySelector('.lineup-container');
+      const rosterContainer = document.querySelector('.roster-list');
+      saveRoster(roster);
+      saveLineup(currentLineup);
+      paintRoster(roster, rosterContainer);
+      paintLineup(lineup, lineupContainer);
+    }
+    console.log(roster, 'here');
+  }
+
+  // add an event listener for each dialog button
+  dialogButtons.forEach((button) => {
+    button.addEventListener('click', handleButton);
+  });
+  const lineup = getLineup();
+  if (lineup.length > 0) {
+    dialog.showModal();
+  }
+}
+
+function getOneAtRandom(arr) {
+  const number = Math.floor(Math.random() * arr.length);
+  return arr[number];
 }
 
 // paint lineup to the DOM
