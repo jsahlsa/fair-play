@@ -37,7 +37,7 @@ export function saveLineup(lineup) {
 }
 
 // paint roster to the DOM
-export function paintRoster(data, parent) {
+export function paintRoster(data, parent, tableHead) {
   parent.innerHTML = '';
   for (let i = 0; i < data.length; i++) {
     const tr = document.createElement('tr');
@@ -69,6 +69,9 @@ export function paintRoster(data, parent) {
     parent.appendChild(tr);
     // use checkbox as parameter for inOut function
     inOut(activeBtn);
+    // make table heads visible
+    const tableHeads = document.querySelector('.table-heads');
+    tableHeads.style.visibility = 'visible';
   }
 }
 

@@ -29,6 +29,7 @@ const lineupContainer = document.querySelector('.lineup-container');
 const rosterContainer = document.querySelector('.roster-container');
 const rosterBtn = document.querySelector('.roster-btn');
 const lineupBtn = document.querySelector('.lineup-btn');
+const tableHeads = document.querySelector('.table-heads');
 
 /**
  * Adds player to roster
@@ -132,6 +133,7 @@ function clearData() {
 
 function rosterBtnClick() {
   rosterContainer.style.visibility = 'visible';
+  tableHeads.style.visibility = 'visible';
   lineupContainer.style.display = 'none';
   rosterBtn.style.backgroundColor = '#242424';
   lineupBtn.style.backgroundColor = 'greenyellow';
@@ -141,6 +143,7 @@ function rosterBtnClick() {
 
 function lineupBtnClick() {
   rosterContainer.style.visibility = 'hidden';
+  tableHeads.style.visibility = 'hidden';
   lineupContainer.style.display = 'block';
   lineupBtn.style.backgroundColor = '#242424';
   lineupBtn.style.color = 'greenyellow';
