@@ -68,6 +68,12 @@ function rosterAdd(e) {
     alert('Enter a value');
     return;
   }
+  for (let i = 0; i < roster.length; i++) {
+    if (name === roster[i].name) {
+      alert('Name already exists');
+      return;
+    }
+  }
   // push person to roster with data attributes that contain
   // name, whether they played last, how many times they played
   // and whether they are active
