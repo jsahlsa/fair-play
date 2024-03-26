@@ -96,9 +96,11 @@ li:nth-child(odd) {
 .make-lineup {
   visibility: hidden;
   border-radius: 0;
-  background-color: yellowgreen;
+  background-color: greenyellow;
   color: #242424;
 }
+
+https://www.google.com/search?q=joe&sca_esv=9b74a4c0b9e67cb5&tbm=isch&source=hp&biw=1402&bih=749&ei=HDHyZYT8AZzKkPIPuNeFiAI&iflsig=ANes7DEAAAAAZfI_LO55jL2tdNxNLPCKqa76fVaAooSX&ved=0ahUKEwiE-ufurPKEAxUcJUQIHbhrASEQ4dUDCAc&uact=5&oq=joe&gs_lp=EgNpbWciA2pvZTIIEAAYgAQYsQMyBRAAGIAEMggQABiABBixAzIIEAAYgAQYsQMyCBAAGIAEGLEDMggQABiABBixAzIIEAAYgAQYsQMyBRAAGIAEMgUQABiABDIIEAAYgAQYsQNIlRJQvA5YhBFwAHgAkAEAmAEvoAGCAaoBATO4AQPIAQD4AQGKAgtnd3Mtd2l6LWltZ5gCA6ACmQGoAgCYAwSSBwEzoAfJDQ&sclient=img
 
 .clear-data {
   border-radius: 0;
