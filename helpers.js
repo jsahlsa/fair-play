@@ -253,7 +253,6 @@ export function paintLineup(data, parent) {
         // remove last lineup
         // paint and save new lineup and roster
         const lastLineup = lineup[0].lineup;
-        console.log("last lineup: ", lastLineup);
         for (let i = 0; i < roster.length; i++) {
             if (lastLineup.includes(roster[i].name)) {
                 if (roster[i].timesPlayed > 0) {
@@ -261,7 +260,6 @@ export function paintLineup(data, parent) {
                 }
             }
         }
-        console.log(roster);
         // remove last lineup
         lineup.shift();
         // paint new lineup

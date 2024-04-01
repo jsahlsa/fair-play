@@ -140,10 +140,8 @@ function rosterBtnClick() {
     rosterContainer.style.visibility = "visible";
     tableHeads.style.visibility = "visible";
     lineupContainer.style.display = "none";
-    rosterBtn.style.backgroundColor = "#242424";
-    lineupBtn.style.backgroundColor = "greenyellow";
-    lineupBtn.style.color = "#242424";
-    rosterBtn.style.color = "greenyellow";
+    rosterBtn.classList.remove("inactive");
+    lineupBtn.classList.add("inactive");
     const roster = getRoster();
     paintRoster(roster, rosterList);
 }
@@ -152,10 +150,8 @@ function lineupBtnClick() {
     rosterContainer.style.visibility = "hidden";
     tableHeads.style.visibility = "hidden";
     lineupContainer.style.display = "block";
-    lineupBtn.style.backgroundColor = "#242424";
-    lineupBtn.style.color = "greenyellow";
-    rosterBtn.style.backgroundColor = "greenyellow";
-    rosterBtn.style.color = "#242424";
+    rosterBtn.classList.add("inactive");
+    lineupBtn.classList.remove("inactive");
     const lineup = getLineup();
     paintLineup(lineup, lineupContainer);
 }
