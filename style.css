@@ -72,7 +72,7 @@ main {
 
 .main-container {
     display: grid;
-    place-content: center;
+    justify-content: center;
 }
 
 .roster-container,
@@ -83,6 +83,13 @@ main {
 .roster-container {
     overflow-y: scroll;
     padding: 0;
+    margin-top: 5rem;
+}
+
+label[for="add-player"] {
+    display: grid;
+    justify-content: stretch;
+    grid-template-columns: 1fr auto;
 }
 
 .table-heads {
@@ -167,7 +174,6 @@ button:focus {
 }
 
 input {
-    width: 65%;
     height: 2.5rem;
     font-size: 1.5rem;
     padding: 0.7rem;
@@ -189,9 +195,12 @@ input:focus {
 }
 
 .add-to-roster {
-    height: 4rem;
+    height: 4.15rem;
     width: 4rem;
     font-size: 2rem;
+    margin: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 table {
