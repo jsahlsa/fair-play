@@ -3,8 +3,10 @@
 
     --primary-color: hotpink;
     --color: rgba(255, 255, 255, 0.87);
-
+    --active-color: hsla(151, 100%, 50%, 1);
+    --inactive-color: hsla(8, 100%, 50%, 1);
     --gray-background: rgba(0, 0, 0, 0.6);
+    --button: hsl(8, 0%, 90%);
     --background: #242424;
     line-height: 1.5;
     font-weight: 400;
@@ -22,6 +24,7 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --primary-color: lime;
+        --button: hsl(8, 0%, 10%);
     }
     body {
         background-color: var(--background);
@@ -86,6 +89,13 @@ main {
     margin-top: 5rem;
 }
 
+.roster-container::-webkit-scrollbar {
+    display: none;
+}
+
+.lineup-container::-webkit-scrollbar {
+    display: none;
+}
 label[for="add-player"] {
     display: grid;
     justify-content: stretch;
@@ -99,7 +109,7 @@ label[for="add-player"] {
 .lineup-container {
     display: none;
     overflow-y: scroll;
-    width: 100dvw;
+    width: 100%;
     font-size: 1.5rem;
 }
 
@@ -142,6 +152,7 @@ li:nth-child(odd) {
     border-radius: 0;
     background-color: var(--background);
     border-width: 2px;
+    color: var(--color);
 }
 
 h2 {
@@ -195,16 +206,18 @@ input:focus {
 }
 
 .add-to-roster {
-    height: 4.15rem;
+    height: auto;
     width: 4rem;
     font-size: 2rem;
     margin: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    border-left: none;
 }
 
 table {
     width: 100%;
+    border-collapse: collapse;
 }
 
 th {
@@ -221,8 +234,8 @@ td {
     text-align: center;
 }
 
-tbody tr:nth-child(odd) {
-    background-color: var(--gray-background);
+tr {
+    border-bottom: 2px solid var(--gray-background);
 }
 
 .roster-lineup-container {
@@ -266,4 +279,36 @@ tbody tr:nth-child(odd) {
     height: 10dvh;
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+/* checkbox styles */
+input[type="checkbox"] {
+    appearance: none;
+    background-color: var(--active-color);
+    width: 3.7rem;
+    height: 2.1rem;
+    border-radius: 2rem;
+    position: relative;
+    top: 4.5px;
+}
+
+input[type="checkbox"]::before {
+    --button-size: 1.9rem;
+    content: "";
+    position: absolute;
+    width: var(--button-size);
+    height: var(--button-size);
+    border-radius: 1.8rem;
+    top: 1.7px;
+    left: 2px;
+    background-color: var(--button);
+    transition: transform 0.3s ease;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--inactive-color);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: translateX(25px);
 }
