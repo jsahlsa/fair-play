@@ -161,3 +161,10 @@ makeLineupBtn.addEventListener("click", makeLineup);
 clearDataBtn.addEventListener("click", clearData);
 rosterBtn.addEventListener("click", rosterBtnClick);
 lineupBtn.addEventListener("click", lineupBtnClick);
+
+const infoButton = document.querySelector(".info-icon");
+const infoDialog = document.querySelector(".info-dialog");
+
+infoButton.addEventListener("click", () => {
+    infoDialog.showModal();
+});

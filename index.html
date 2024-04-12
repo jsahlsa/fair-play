@@ -1,47 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/b-ball.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fair Play App</title>
-  </head>
-  <body>
-    <main>
-      <div class="roster-lineup-container">
-        <button class="roster-btn top-button">roster</button>
-        <button class="lineup-btn top-button inactive">lineup</button>
-      </div>
-      <div class="main-container">
-        <div class="roster-container">
-          <h2>Roster</h2>
-          <label for="add-player">
-            <input
-              id="add-player"
-              type="text"
-              placeholder="player name to add"
-              autocomplete="false"
-            />
-            <button class="add-to-roster">+</button>
-          </label>
-          <table>
-            <thead>
-              <tr class="table-heads">
-                <th>Name</th>
-                <th># played</th>
-                <th>In/Out</th>
-              </tr>
-            </thead>
-            <tbody class="roster-list"></tbody>
-          </table>
-        </div>
-        <div class="lineup-container"></div>
-      </div>
-      <div class="bottom-container">
-        <button class="clear-data">New Game</button>
-        <button class="make-lineup">Create Lineup</button>
-      </div>
-    </main>
-    <script type="module" src="/main.js"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/b-ball.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fair Play App</title>
+    </head>
+    <body>
+        <main>
+            <div class="roster-lineup-container">
+                <button class="roster-btn top-button">roster</button>
+                <button class="lineup-btn top-button inactive">lineup</button>
+            </div>
+            <div class="main-container">
+                <span class="info-icon">&#9432;</span>
+                <dialog class="info-dialog">
+                    <h2>Welcome to the Fair Play App!</h2>
+                    <p>This app attempts to make the fairest lineup possible</p>
+                    <ul>
+                        <li>Add players to your roster</li>
+                        <li>Create Lineups</li>
+                        <li>Mark players as active/inactive</li>
+                        <li>Undo previous lineups</li>
+                    </ul>
+                    <p>
+                        Check the source for more implementation details:
+                        <a href="https://github.com/jsahlsa/fair-play"
+                            >github</a
+                        >
+                    </p>
+                    <p>
+                        Created by
+                        <strong
+                            ><a href="https://joesahlsa.dev/"
+                                >joesahlsa</a
+                            ></strong
+                        >
+                    </p>
+                    <form method="dialog">
+                        <button>Cool!</button>
+                    </form>
+                </dialog>
+                <div class="roster-container">
+                    <h2>Roster</h2>
+                    <label for="add-player">
+                        <input
+                            id="add-player"
+                            type="text"
+                            placeholder="player name to add"
+                            autocomplete="false"
+                        />
+                        <button class="add-to-roster">+</button>
+                    </label>
+                    <table>
+                        <thead>
+                            <tr class="table-heads">
+                                <th>Name</th>
+                                <th># played</th>
+                                <th>In/Out</th>
+                            </tr>
+                        </thead>
+                        <tbody class="roster-list"></tbody>
+                    </table>
+                </div>
+                <div class="lineup-container"></div>
+            </div>
+            <div class="bottom-container">
+                <button class="clear-data">New Game</button>
+                <button class="make-lineup">Create Lineup</button>
+            </div>
+        </main>
+        <script type="module" src="/main.js"></script>
+    </body>
 </html>

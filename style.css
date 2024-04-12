@@ -62,6 +62,10 @@ body {
     padding: 0;
 }
 
+button {
+    cursor: pointer;
+}
+
 main {
     max-width: 1024px;
     width: 100%;
@@ -76,6 +80,7 @@ main {
 .main-container {
     display: grid;
     justify-content: center;
+    position: relative;
 }
 
 .roster-container,
@@ -311,4 +316,49 @@ input[type="checkbox"]:checked {
 
 input[type="checkbox"]:checked::before {
     transform: translateX(25px);
+}
+
+.info-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--background);
+    background-color: var(--primary-color);
+    border-radius: 2rem;
+    padding: 0 6px;
+    font-weight: 500;
+    width: 1.5rem;
+    cursor: pointer;
+}
+
+/* info dialog styling */
+dialog li {
+    font-size: 1rem;
+}
+
+dialog li:nth-child(odd) {
+    background-color: var(--background);
+}
+
+dialog h2 {
+    color: var(--background);
+    background-color: var(--primary-color);
+    display: inline;
+    padding: 0 5px;
+    font-size: 2rem;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+}
+
+dialog a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
+dialog button {
+    background-color: var(--primary-color);
+    color: var(--background);
 }
