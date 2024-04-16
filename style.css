@@ -318,7 +318,7 @@ input[type="checkbox"]:checked::before {
     transform: translateX(25px);
 }
 
-.info-icon {
+.info-icon-container {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -326,10 +326,13 @@ input[type="checkbox"]:checked::before {
     color: var(--background);
     background-color: var(--primary-color);
     border-radius: 2rem;
-    padding: 0 6px;
     font-weight: 500;
-    width: 1.5rem;
+    width: 2rem;
+    height: 2rem;
     cursor: pointer;
+    display: grid;
+    justify-content: center;
+    align-content: center;
 }
 
 /* info dialog styling */
